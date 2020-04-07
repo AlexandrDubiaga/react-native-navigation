@@ -1,8 +1,13 @@
-import React,{useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
-import {bootstrap} from './src/bootstrap'
+
+import { bootstrap } from "./src/bootstrap";
+import { AppNavigation } from "./src/navigation/AppNavigation";
+
+
+
+
 
 
 export default function App() {
@@ -12,23 +17,20 @@ export default function App() {
     return (
       <AppLoading
         startAsync={bootstrap}
-        onError={err => console.log(err)}
+        onError={(err) => console.log(err)}
         onFinish={() => setIsReady(true)}
       />
     );
   }
-  return (
-    <View style={styles.container}>
-      <Text>Navigation App!!</Text>
-    </View>
-  );
+  return <AppNavigation />
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    color:'blue'
   },
 });

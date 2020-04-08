@@ -13,7 +13,9 @@ export const MainScreen = ({ navigation }) => {
         }}
         renderItem={({ item }) => (
           <Post
-            onPress={() => navigation.navigate("Post", {postId: item.id})}
+            onPress={() =>
+              navigation.navigate("Post", { date: item.date, postId: item.id })
+            }
             post={item}
           />
         )}

@@ -3,34 +3,56 @@ import { StyleSheet, Text, View, Image, Button, Alert } from "react-native";
 import { DATA } from "../data";
 import { THEME } from "../theme";
 import { ScrollView } from "react-native-gesture-handler";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { AppHeaderIcons } from "../components/AppHeaderIcons";
 
 export const PostScreen = ({ route, navigation }) => {
-  const { postId } = route.params;
-  const post = DATA.find((post) => post.id === postId);
-  const removeHandler=()=>{
+  const { postId,booked,date,post} = route.params;
+  //const post = DATA.find((post) => post.id === postId);
+  const IosStar = booked? "ios-star" : "ios-star-outline";
+  navigation.setOptions({
+    title: "Пост от: " + new Date(date).toLocaleDateString(),
+    headerRight: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={AppHeaderIcons}>
+          <Item
+            title="Take Foto"
+            iconName={IosStar}
+            onPress={() => alert("Take foto")}
+          />
+        </HeaderButtons>
+      );
+    },
+  });
+
+  const removeHandler = () => {
     Alert.alert(
-      'Удаление поста',
-      'Вы точно хотите удалить пост?',
+      "Удаление поста",
+      "Вы точно хотите удалить пост?",
       [
         {
-          text: 'Отменить',
-          style: 'cancel',
+          text: "Отменить",
+          style: "cancel",
         },
-        {text: 'Удалить', onPress: () => alert('Пост '+ postId+' удалён')},
+        { text: "Удалить", onPress: () => alert("Пост " + postId + " удалён") },
       ],
-      {cancelable: false},
+      { cancelable: false }
     );
-  }
+  };
   return (
     <ScrollView>
-    <View>
-      <Image source={{ uri: post.img }} style={styles.image} />
-      <View style={styles.textWrapp}>
-        <Text style={styles.title}>{post.text}</Text></View>
-        <Button title="Удалить" color={THEME.DANGER_COLOR} onPress={removeHandler}/>
-    </View>
+      <View>
+        <Image source={{ uri: post.img }} style={styles.image} />
+        <View style={styles.textWrapp}>
+          <Text style={styles.title}>{post.text}</Text>
+        </View>
+        <Button
+          title="Удалить"
+          color={THEME.DANGER_COLOR}
+          onPress={removeHandler}
+        />
+      </View>
     </ScrollView>
-    
   );
 };
 
@@ -39,10 +61,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
   },
-  textWrapp:{
-    padding:10
+  textWrapp: {
+    padding: 10,
   },
-  title:{
-    fontFamily:'sans-regular'
-  }
+  title: {
+    fontFamily: "sans-regular",
+  },
 });

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MainScreen } from "../../src/screens/MainScreen";
@@ -27,43 +27,28 @@ export const AppNavigation = () => {
           },
         }}
       >
-        <Stack.Screen
-          name="Main"
-          component={MainScreen}
-          options={{
-            title: "Главный экран",
-            headerStyle: {
-              backgroundColor:
-                Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff",
-            },
-            headerTintColor:
-              Platform.OS === "android" ? "#fff" : THEME.MAIN_COLOR,
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-          }}
-        />
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="PostScreen" component={PostScreen} />
+
+
+
+        
         <Stack.Screen
           name="Booked"
           component={BookedScreen}
           options={{ title: "Booked" }}
         />
         <Stack.Screen
-          name="Create"
+          name="CreatePost"
           component={CreateScreen}
-          options={{ title: "Создать экран" }}
+          options={{ title: "Создать пост" }}
         />
         <Stack.Screen
           name="About"
           component={AboutScreen}
           options={{ title: "О экране" }}
         />
-        <Stack.Screen
-          name="Post"
-          component={PostScreen}
-          options={({route})=>({ title: "Пост от: " + new Date(route.params.date).toLocaleDateString() })}
-        />
+     
       </Stack.Navigator>
     </NavigationContainer>
   );

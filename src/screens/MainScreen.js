@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 import { DATA } from "../data";
-import { Post } from "../components/Post";
 import { AppHeaderIcons } from "../components/AppHeaderIcons";
 import {THEME} from '../theme'
+import{PostsList} from '../components/PostsList'
+
 
 export const MainScreen = ({ navigation }) => {
   navigation.setOptions({
@@ -25,12 +26,13 @@ export const MainScreen = ({ navigation }) => {
           <Item
             title="Take Foto"
             iconName="ios-menu"
-            onPress={() => alert("Take foto")}
+            onPress={() => navigation.toggleDrawer() }
           />
         </HeaderButtons>
       );
     },
     title:'Главный экран',
+    
     headerStyle: {
       backgroundColor:
         Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff",
@@ -49,26 +51,5 @@ export const MainScreen = ({ navigation }) => {
       post:post
     })
   }
-  return (
-    <View style={styles.wrapper}>
-      <FlatList
-        data={DATA}
-        keyExtractor={(post) => {
-          return post.id.toString();
-        }}
-        renderItem={({ item }) => (
-          <Post
-            onPress={postHandlerr}
-            post={item}
-          />
-        )}
-      />
-    </View>
-  );
+  return <PostsList data={DATA} onOpen={postHandlerr} />
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: 10,
-  },
-});

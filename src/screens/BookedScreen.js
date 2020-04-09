@@ -1,22 +1,23 @@
-import React,{useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import { DATA } from "../data";
+import { PostsList } from "../components/PostsList";
 
+export const BookedScreen = ({ navigation }) => {
+  navigation.setOptions({
+    title: "Избранное",
+  });
 
-
-export const  BookedScreen=() =>{
+  const posts = DATA.filter((post) => post.booked);
   return (
     <View>
-      <Text style={styles.center}>BookedScreen</Text>
+      <PostsList data={posts} onOpen={()=>console.log('Избранное')}/>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-    center:{
-       
-        justifyContent:'center',
-        alignItems:'center',
-        color:'blue'
-
-    }
+  center: {
+    padding: 10,
+  },
 });

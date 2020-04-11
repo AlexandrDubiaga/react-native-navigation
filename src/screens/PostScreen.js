@@ -18,7 +18,7 @@ export const PostScreen = ({ route, navigation }) => {
           <Item
             title="Take Foto"
             iconName={IosStar}
-            onPress={() => alert("Take foto")}
+            onPress={() => {}}
           />
         </HeaderButtons>
       );

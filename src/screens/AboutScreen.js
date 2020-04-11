@@ -1,22 +1,56 @@
-import React,{useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { THEME } from "../theme";
+import { AppHeaderIcons } from "../components/AppHeaderIcons";
 
+export const AboutScreen = ({route, navigation}) => {
 
+  navigation.setOptions({
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={AppHeaderIcons}>
+          <Item
+            title="Take Foto"
+            iconName="ios-menu"
+            onPress={() => navigation.toggleDrawer()}
+          />
+        </HeaderButtons>
+      );
+    },
+    headerRight: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={AppHeaderIcons}>
+          <Item
+            title="Go Back"
+            iconName="md-arrow-back"
+            onPress={() => navigation.goBack()}
+          />
+        </HeaderButtons>
+      );
+    },
+    title: "О приложении",
 
-export const  AboutScreen=() =>{
+    headerStyle: {
+      backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff",
+    },
+    headerTintColor: Platform.OS === "android" ? "#fff" : THEME.MAIN_COLOR,
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  });
   return (
-    <View>
-      <Text style={styles.center}>AboutScreen</Text>
+    <View style={styles.center}>
+      <Text>AboutScreen</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-    center:{
-       
-        justifyContent:'center',
-        alignItems:'center',
-        color:'blue'
-
-    }
+  center: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    color: "blue",
+  },
 });

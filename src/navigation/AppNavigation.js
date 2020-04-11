@@ -14,10 +14,10 @@ import { THEME } from "../theme";
 import { Platform } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-const MainStackNavigator = createStackNavigator();
-export const MainStack = () => {
+const MainStack = createStackNavigator();
+export const MainScreenNavigator = () => {
   return (
-    <MainStackNavigator.Navigator
+    <MainStack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor:
@@ -29,16 +29,16 @@ export const MainStack = () => {
         },
       }}
     >
-      <MainStackNavigator.Screen name="Main" component={MainScreen} />
-      <MainStackNavigator.Screen name="PostScreen" component={PostScreen} />
-    </MainStackNavigator.Navigator>
+      <MainStack.Screen name="Main" component={MainScreen} />
+      <MainStack.Screen name="PostScreen" component={PostScreen} />
+    </MainStack.Navigator>
   );
 };
 
-const BookedStackNavigator = createStackNavigator();
-export const BookedScreenStack = () => {
+const BookedStack = createStackNavigator();
+export const BookedScreenNavigator = () => {
   return (
-    <BookedStackNavigator.Navigator
+    <BookedStack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: Platform.OS === "android" ? "#f4511e" : "#fff",
@@ -49,8 +49,8 @@ export const BookedScreenStack = () => {
         },
       }}
     >
-      <BookedStackNavigator.Screen name="Booked" component={BookedScreen} />
-    </BookedStackNavigator.Navigator>
+      <BookedStack.Screen name="Booked" component={BookedScreen} />
+    </BookedStack.Navigator>
   );
 };
 
@@ -88,44 +88,113 @@ export const MyTabs = () => {
           },
         };
   return (
-      <Tab.Navigator OS>
-        <Tab.Screen
-          name="MainStack"
-          component={MainStack}
-          options={{
-            tabBarLabel: "Все",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="ios-albums" color={color} size={25} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="BookedScreenStack"
-          component={BookedScreenStack}
-          options={{
-            tabBarLabel: "Избранное",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="ios-star" color={color} size={25} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+    <Tab.Navigator OS>
+      <Tab.Screen
+        name="MainScreen"
+        component={MainScreenNavigator}
+        options={{
+          tabBarLabel: "Все",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="ios-albums" color={color} size={25} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="BookedScreen"
+        component={BookedScreenNavigator}
+        options={{
+          tabBarLabel: "Избранное",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="ios-star" color={color} size={25} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
+const AboutStack = createStackNavigator();
+export const AboutScreenNavigator = (props) => {
+  return (
+    <AboutStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor:
+            Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <AboutStack.Screen name="AboutScreen" component={AboutScreen} />
+    </AboutStack.Navigator>
+  );
+};
+const CreateStack = createStackNavigator();
+export const CreateScreenNavigator = (props) => {
+  return (
+    <CreateStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor:
+            Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <CreateStack.Screen name="Create" component={CreateScreen} />
+    </CreateStack.Navigator>
+  );
+};
 
 const MainNavigator = createDrawerNavigator();
 
-export const MainNavScreens=()=> {
+export const MainNavScreens = () => {
   return (
     <NavigationContainer>
-      <MainNavigator.Navigator initialRouteName="Main">
-        <MainNavigator.Screen name="Main" component={MyTabs} />
-        <MainNavigator.Screen name="About" component={AboutScreen} />
-        <MainNavigator.Screen name="Create" component={CreateScreen} />
+      <MainNavigator.Navigator
+        initialRouteName="Main"
+        drawerStyle={{
+          backgroundColor: "#c6cbef",
+          width: 240,
+        }}
+      
+        
+        drawerContentOptions={{
+          activeTintColor: "#e91e63",
+          itemStyle: { marginVertical: 10, },
+        }}
+      >
+        <MainNavigator.Screen
+          name="Main"
+          options={{
+            drawerLabel: "Главная",
+            drawerIcon: () => <Ionicons name="ios-star" />,
+          }}
+          component={MyTabs}
+        />
+        <MainNavigator.Screen
+          name="AboutScreen"
+          options={{
+            drawerLabel: "О приложении",
+          }}
+          component={AboutScreenNavigator}
+        />
+        <MainNavigator.Screen
+          name="Create"
+          options={{
+            drawerLabel: "Создать пост",
+          }}
+          component={CreateScreenNavigator}
+        />
       </MainNavigator.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({});

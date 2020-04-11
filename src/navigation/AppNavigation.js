@@ -161,13 +161,15 @@ export const MainNavScreens = () => {
         initialRouteName="Main"
         drawerStyle={{
           backgroundColor: "#c6cbef",
-          width: 240,
+          width: 280,
         }}
-      
-        
+     
         drawerContentOptions={{
-          activeTintColor: "#e91e63",
-          itemStyle: { marginVertical: 10, },
+          activeTintColor: "#fff",
+          inactiveTintColor:'black',
+          activeBackgroundColor:'gray',
+          itemStyle: { marginVertical: 5,borderBottomColor:'blue',borderRadius:20},
+          labelStyle:{fontFamily:'sans-regular',fontSize:15,fontWeight:'bold'}
         }}
       >
         <MainNavigator.Screen
@@ -181,7 +183,7 @@ export const MainNavScreens = () => {
         <MainNavigator.Screen
           name="AboutScreen"
           options={{
-            drawerLabel: "О приложении",
+            drawerLabel: "О приложении"
           }}
           component={AboutScreenNavigator}
         />

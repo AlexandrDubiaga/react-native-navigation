@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
 import { MainNavScreens } from "./src/navigation/AppNavigation";
 import { bootstrap } from "./src/bootstrap";
-
+import {Provider} from 'react-redux';
+import {store} from './src/store/index'
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -18,7 +19,7 @@ export default function App() {
     );
   }
  
-  return <MainNavScreens />
+  return <Provider store={store}><MainNavScreens /></Provider> 
 }
 
 const styles = StyleSheet.create({

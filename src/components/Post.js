@@ -9,7 +9,7 @@ import {
 
 export const Post = ({onPress, post }) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} onPress={()=>onPress(post)}>
+    <TouchableOpacity activeOpacity={0.7} onLongPress={()=>alert("Чего вам угодно?")} onPress={()=>onPress(post)}>
       <View style={styles.post}>
         <ImageBackground style={styles.image} source={{ uri: post.img }}>
           <View style={styles.textWrapp}>

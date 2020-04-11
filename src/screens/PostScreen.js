@@ -8,7 +8,6 @@ import { AppHeaderIcons } from "../components/AppHeaderIcons";
 
 export const PostScreen = ({ route, navigation }) => {
   const { postId,booked,date,post} = route.params;
-  //const post = DATA.find((post) => post.id === postId);
   const IosStar = booked? "ios-star" : "ios-star-outline";
   navigation.setOptions({
     title: "Пост от: " + new Date(date).toLocaleDateString(),

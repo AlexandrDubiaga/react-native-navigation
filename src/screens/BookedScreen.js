@@ -8,14 +8,6 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { loadPosts } from "../store/types";
 
 export const BookedScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadPosts());
-  }, [dispatch]);
-  const bookedPosts = useSelector((state) => {
-    return state.post.bookedPosts;
-  });
   navigation.setOptions({
     headerRight: () => {
       return (
@@ -53,7 +45,7 @@ export const BookedScreen = ({ navigation }) => {
   return (
     <View>
       <PostsList
-        data={bookedPosts}
+        data={useSelector(state => state.post.allPosts.filter(post=>post.booked))}
         onOpen={() => console.log("Избранное")}
       />
     </View>

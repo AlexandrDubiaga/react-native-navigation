@@ -29,7 +29,6 @@ export const CreateScreen = ({route,navigation}) => {
       );
     },
     title: "Создать",
-
     headerStyle: {
       backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff",
     },

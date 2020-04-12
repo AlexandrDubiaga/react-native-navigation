@@ -23,7 +23,7 @@ export const MainScreen = ({ navigation }) => {
           <Item
             title="Take Foto"
             iconName="ios-camera"
-            onPress={() => navigation.navigate("Create", { id: 44 })}
+            onPress={() => navigation.navigate("Create")}
           />
         </HeaderButtons>
       );
@@ -52,9 +52,7 @@ export const MainScreen = ({ navigation }) => {
   const postHandlerr = (post) => {
     return navigation.navigate("PostScreen", {
       date: post.date,
-      postId: post.id,
-      booked: post.booked,
-      post: post,
+      postId: post.id
     });
   };
   return <PostsList data={allPosts} onOpen={postHandlerr} />;

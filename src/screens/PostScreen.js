@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Button, Alert } from "react-native";
 import { DATA } from "../data";
 import { THEME } from "../theme";
 import { ScrollView } from "react-native-gesture-handler";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { AppHeaderIcons } from "../components/AppHeaderIcons";
+import { toogleBooked, deletePost } from "../store/types";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 export const PostScreen = ({ route, navigation }) => {
-  const { postId,booked,date,post} = route.params;
-  const IosStar = booked? "ios-star" : "ios-star-outline";
+  const { postId, date } = route.params;
+  const dispatch = useDispatch();
+
+  const post = useSelector((state) =>
+    state.post.allPosts.find((p) => p.id === postId)
+  );
+  if (!post) {
+    return null;
+  }
+  const IosStar = post.booked ? "ios-star" : "ios-star-outline";
   navigation.setOptions({
     title: "Пост от: " + new Date(date).toLocaleDateString(),
     headerRight: () => {
@@ -17,7 +27,9 @@ export const PostScreen = ({ route, navigation }) => {
           <Item
             title="Take Foto"
             iconName={IosStar}
-            onPress={() => {}}
+            onPress={() => {
+              dispatch(toogleBooked(postId));
+            }}
           />
         </HeaderButtons>
       );
@@ -33,7 +45,13 @@ export const PostScreen = ({ route, navigation }) => {
           text: "Отменить",
           style: "cancel",
         },
-        { text: "Удалить", onPress: () => alert("Пост " + postId + " удалён") },
+        {
+          text: "Удалить",
+          onPress: () => {
+            navigation.navigate("Main");
+            dispatch(deletePost(postId));
+          },
+        },
       ],
       { cancelable: false }
     );

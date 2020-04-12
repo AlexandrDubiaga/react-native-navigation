@@ -1,10 +1,13 @@
-import { LOAD_POSTS, TOOGLE_BOOKED ,DELETE_POST} from "../types";
+import { LOAD_POSTS, TOOGLE_BOOKED ,DELETE_POST,ADD_POST} from "../types";
+
+
 const initiallState = {
   allPosts: []
 };
 export const postReducer = (state = initiallState, action) => {
   switch (action.type) {
     case LOAD_POSTS: {
+     
       return {
         ...state,
         allPosts: action.payload
@@ -30,6 +33,16 @@ export const postReducer = (state = initiallState, action) => {
         allPosts: state.allPosts.filter(p=>p.id!==action.payload)
       }
     }
+    case ADD_POST:{
+     //console.log(action.payload)
+      return{
+        ...state,
+        allPosts: [{...action.payload},...state.allPosts]
+      }
+    }
+
+
+    
     default:
       return state;
   }

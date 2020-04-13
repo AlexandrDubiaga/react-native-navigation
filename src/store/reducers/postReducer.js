@@ -2,15 +2,16 @@ import { LOAD_POSTS, TOOGLE_BOOKED ,DELETE_POST,ADD_POST} from "../types";
 
 
 const initiallState = {
-  allPosts: []
+  allPosts: [],
+  loadings:true
 };
 export const postReducer = (state = initiallState, action) => {
   switch (action.type) {
     case LOAD_POSTS: {
-     
       return {
         ...state,
-        allPosts: action.payload
+        allPosts: action.payload,
+        loadings:false
       };
     }
     case TOOGLE_BOOKED: {

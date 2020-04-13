@@ -3,6 +3,11 @@ import { StyleSheet, Text, View, Image, Button, Alert,FlatList } from "react-nat
 import { Post } from "../components/Post";
 
 export const PostsList = ({data,onOpen}) => {
+  if(!data.length){
+    return <View style={styles.wrapper}>
+      <Text style={styles.noItems}>Постов пока нету!</Text>
+    </View>
+  }
   return (
     <View style={styles.wrapper}>
       <FlatList
@@ -28,5 +33,10 @@ const styles = StyleSheet.create({
     wrapper: {
       padding: 10,
     },
+    noItems:{
+      textAlign:'center',
+      marginVertical:10,
+      fontSize:18
+    }
   });
   

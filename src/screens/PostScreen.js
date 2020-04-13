@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Button, Alert } from "react-native";
-import { DATA } from "../data";
+
 import { THEME } from "../theme";
 import { ScrollView } from "react-native-gesture-handler";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -28,7 +28,7 @@ export const PostScreen = ({ route, navigation }) => {
             title="Take Foto"
             iconName={IosStar}
             onPress={() => {
-              dispatch(toogleBooked(postId));
+              dispatch(toogleBooked(post));
             }}
           />
         </HeaderButtons>

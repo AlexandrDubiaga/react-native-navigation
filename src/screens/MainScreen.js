@@ -47,7 +47,7 @@ export const MainScreen = ({ navigation }) => {
         </HeaderButtons>
       );
     },
-    title: "Главный экран",
+    title: "Мой блог",
 
     headerStyle: {
       backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff",
@@ -56,6 +56,7 @@ export const MainScreen = ({ navigation }) => {
     headerTitleStyle: {
       fontWeight: "bold",
     },
+    headerTitleAlign:'center'
   });
   const postHandlerr = (post) => {
     return navigation.navigate("PostScreen", {

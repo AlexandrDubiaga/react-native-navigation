@@ -1,19 +1,19 @@
 {
   "expo": {
-    "name": "react-navigation",
+    "name": "Self blog",
     "slug": "react-navigation",
+    "privacy":"public",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/fonts/plant.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#b4a9c5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,7 +22,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cardo-company.self-blog-app",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.cardo_company.self_blog_app",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE"
+      ]
     }
   }
 }
